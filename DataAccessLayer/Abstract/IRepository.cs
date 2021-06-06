@@ -12,6 +12,7 @@ namespace DataAccessLayer.Abstract
         List<T> List();
         void Insert(T entity);
         void Update(T entity);
+        T Get(Expression<Func<T, bool>> filter);  //tek değer döndürme
         void Delete(T entity);
         List<T> List(Expression<Func<T, bool>> filter); //şartlı listeleme işlemi
     }

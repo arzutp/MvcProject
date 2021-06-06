@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete.Repositories
 {
+    //her seferinde aynı kontrol işlemlerini yazmamak ve her türlü yapıda kullanabilmek için genel bir sınıf oluşturduk
     public class GenericRepository<T> : IRepository<T> where T : class
     {
         Context c = new Context();
@@ -23,6 +24,11 @@ namespace DataAccessLayer.Concrete.Repositories
         {
             _object.Remove(entity);
             c.SaveChanges();
+        }
+
+        public T Get(Expression<Func<T, bool>> filter)
+        {
+            return _object.SingleOrDefault(filter); //tek değer döndürecek singleofdefault
         }
 
         public void Insert(T entity)

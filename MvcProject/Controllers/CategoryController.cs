@@ -1,6 +1,8 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,11 +32,27 @@ namespace MvcProject.Controllers
             return View();
         }
 
-            [HttpPost]
+        [HttpPost]
         public ActionResult AddCategory(Category category)
         {
             //cm.CategoryAddBl(category);
-            return RedirectToAction("GetCategoryList");  //ekleme işlemi gerçeklesştikten sonra gideceği yer
+            CategoryValidator categoryValidator = new CategoryValidator();
+            //Business tarafında yapılmamasının sebebi işlem gerçekleşmediğinde hatayı view ile görüntüleyebilmek
+
+            ValidationResult results = categoryValidator.Validate(category); //gelen değerlerin kontrolleri
+            if (results.IsValid)
+            { //sonuç geçerliyse
+                cm.CategoryAdd(category);
+                return RedirectToAction("GetCategoryList");  //ekleme işlemi gerçekleştikten sonra gideceği yer
+            }
+            else
+            {
+                foreach (var item in results.Errors)  //hata mesajlarını yazdırıyoruz
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
         }
          
     }

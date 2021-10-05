@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class EFContactDal
+public class EFContactDal : GenericRepository<Contact>, IContactDal
 {
 
 }

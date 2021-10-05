@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class EFHeadingDal
+public class EFHeadingDal : GenericRepository<Heading>, IHeadingDal
 {
 
 }

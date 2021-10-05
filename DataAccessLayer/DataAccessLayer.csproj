@@ -52,25 +52,40 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IAbout.cs" />
+    <Compile Include="Abstract\IAdminDal.cs" />
     <Compile Include="Abstract\ICategoryDal.cs" />
     <Compile Include="Abstract\IContentDal.cs" />
     <Compile Include="Abstract\IContactDal.cs" />
     <Compile Include="Abstract\IHeadingDal.cs" />
+    <Compile Include="Abstract\IImageFileDal.cs" />
+    <Compile Include="Abstract\IMessageDal.cs" />
     <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\ISkillDal.cs" />
+    <Compile Include="Abstract\ITalentCardDal.cs" />
     <Compile Include="Abstract\IWriterDal.cs" />
     <Compile Include="Concrete\Context.cs" />
     <Compile Include="Concrete\Repositories\CategoryRepository.cs" />
     <Compile Include="Concrete\Repositories\GenericRepository.cs" />
+    <Compile Include="Concrete\Repositories\ImageRepository.cs" />
     <Compile Include="Concrete\Repositories\WriterRepository.cs" />
     <Compile Include="EntityFramework\EFAboutDal.cs" />
+    <Compile Include="EntityFramework\EfAdminDal.cs" />
     <Compile Include="EntityFramework\EFCategoryDal.cs" />
     <Compile Include="EntityFramework\EFContactDal.cs" />
     <Compile Include="EntityFramework\EFContentDal.cs" />
     <Compile Include="EntityFramework\EFHeadingDal.cs" />
+    <Compile Include="EntityFramework\EfImageDal.cs" />
+    <Compile Include="EntityFramework\EfMessageDal.cs" />
+    <Compile Include="EntityFramework\EfSkillDal.cs" />
+    <Compile Include="EntityFramework\EfTalentCardDal.cs" />
     <Compile Include="EntityFramework\EFWriterDal.cs" />
-    <Compile Include="Migrations\202105252005555_Update-Database.cs" />
-    <Compile Include="Migrations\202105252005555_Update-Database.designer.cs">
-      <DependentUpon>202105252005555_Update-Database.cs</DependentUpon>
+    <Compile Include="Migrations\202110031600195_mig_update.cs" />
+    <Compile Include="Migrations\202110031600195_mig_update.designer.cs">
+      <DependentUpon>202110031600195_mig_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110041907555_mig_talent.cs" />
+    <Compile Include="Migrations\202110041907555_mig_talent.designer.cs">
+      <DependentUpon>202110041907555_mig_talent.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,11 +101,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202105252005555_Update-Database.resx">
-      <DependentUpon>202105252005555_Update-Database.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202110031600195_mig_update.resx">
+      <DependentUpon>202110031600195_mig_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110041907555_mig_talent.resx">
+      <DependentUpon>202110041907555_mig_talent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

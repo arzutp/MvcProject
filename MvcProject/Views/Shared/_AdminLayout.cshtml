@@ -12,14 +12,49 @@
 
     <title>AdminLTE 3 | Dashboard 3</title>
 
+    <!-- REQUIRED CSS STYLES START-->
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/fontawesome-free/css/all.min.css">
     <!-- IonIcons -->
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="~/AdminLTE-3.0.4/dist/css/adminlte.min.css">
+    <!-- MVC PROJE KAMP CSS DOSYASI style -->
+    <link rel="stylesheet" href="~/Content/mvcprojekampi.css">
+    <!-- Summernote style-->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- REQUIRED CSS STYLES END-->
+    <!-- REQUIRED SCRIPTS START-->
+    <!-- jQuery -->
+    <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE -->
+    <script src="~/AdminLTE-3.0.4/dist/js/adminlte.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/AdminLTE-3.0.4/dist/js/adminlte.min.js"></script>
+
+    <!-- OPTIONAL SCRIPTS -->
+    <script src="~/AdminLTE-3.0.4/plugins/chart.js/Chart.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
+    <script src="~/AdminLTE-3.0.4/dist/js/pages/dashboard3.js"></script>
+
+    <!-- Summernote -->
+    <script src="~/AdminLTE-3.0.4/plugins/summernote/summernote.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- REQUIRED SCRIPTS END-->
+    <!--
+    <!-- Font Awesome Icons
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/fontawesome-free/css/all.min.css">
+    <!-- IonIcons
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    -->
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -61,19 +96,22 @@ to get the desired effect
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                             with font-awesome or any other icon font library -->
-                        <li class="nav-item has-treeview menu-open">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Kategoriler
-                                    
-                                </p>
-                            </a>
-                            
-                        </li>
+         with font-awesome or any other icon font library -->
+                        @if (User.IsInRole("b"))
+                        {
+                            <li class="nav-item ">
+                                <a href="/AdminCategory/Index" class="nav-link">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        Kategoriler
+
+                                    </p>
+                                </a>
+
+                            </li>
+                        }
                         <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
+                            <a href="/Heading/Index" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Başlıklar
@@ -81,10 +119,10 @@ to get the desired effect
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a href="/Writer/Index" class="nav-link">
                                 <i class="nav-icon fas fa-copy"></i>
                                 <p>
-                                    Yazarlar                                 
+                                    Yazarlar
                                 </p>
                             </a>
                         </li>
@@ -118,7 +156,7 @@ to get the desired effect
                             </ul>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a href="/About/Index" class="nav-link">
                                 <i class="nav-icon fas fa-tree"></i>
                                 <p>
                                     Hakkımızda
@@ -126,20 +164,14 @@ to get the desired effect
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a href="/Contact/Index" class="nav-link">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
-                                    İletişim & Mesajlar                                   
+                                    İletişim & Mesajlar
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
-                                <p>
-                                    Yazılar                                </p>
-                            </a>
-                        </li>
+
                         <li class="nav-item">
                             <a href="pages/calendar.html" class="nav-link">
                                 <i class="nav-icon fas fa-calendar-alt"></i>
@@ -156,11 +188,19 @@ to get the desired effect
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="/Talent/Index" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Yetenek Kartı
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a href="/ErrorPage/Page404/" class="nav-link">
                                 <i class="nav-icon far fa-envelope"></i>
                                 <p>
-                                    Hata Sayfaları                                
+                                    Hata Sayfaları
                                 </p>
                             </a>
                         </li>
@@ -168,7 +208,7 @@ to get the desired effect
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
-                                    Siteye Git                                
+                                    Siteye Git
                                 </p>
                             </a>
                         </li>
@@ -205,16 +245,6 @@ to get the desired effect
     </div>
     <!-- ./wrapper -->
     <!-- REQUIRED SCRIPTS -->
-    <!-- jQuery -->
-    <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="~/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE -->
-    <script src="~/AdminLTE-3.0.4/dist/js/adminlte.js"></script>
-
-    <!-- OPTIONAL SCRIPTS -->
-    <script src="~/AdminLTE-3.0.4/plugins/chart.js/Chart.min.js"></script>
-    <script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
-    <script src="~/AdminLTE-3.0.4/dist/js/pages/dashboard3.js"></script>
+    
 </body>
 </html>

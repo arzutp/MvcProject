@@ -15,6 +15,8 @@ namespace MvcProject.Controllers
         Context context = new Context();
         CategoryManager categoryManager = new CategoryManager(new EFCategoryDal());
 
+        MessageManager mm = new MessageManager(new EfMessageDal());
+
         public ActionResult Index()
         {
             //toplam kategori sayısı
@@ -31,6 +33,9 @@ namespace MvcProject.Controllers
 
             //Kategori tablosunda durumu true olan kategoriler ile false olan kategoriler arasındaki sayısal fark
             ViewBag.difference = context.Categories.Count(x => x.CategoryStatus == true) - context.Categories.Count(x => x.CategoryStatus == false);
+
+            
+            
             return View();
         }
     }

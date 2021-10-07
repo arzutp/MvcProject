@@ -31,8 +31,8 @@ namespace MvcProject.Controllers
         {
             ViewBag.inbox = context.Messages.Count(x => x.ReceiverMail == "admin@gmail.com" && x.Drafts == false && x.Trash == false);
             ViewBag.sendbox = context.Messages.Count(x => x.SenderMail == "admin@gmail.com" && x.Drafts == false && x.Trash == false);
-            ViewBag.drafts = context.Messages.Count(x => x.Drafts == true && x.Trash == false);
-            ViewBag.trash = context.Messages.Count(x => x.Trash == true && x.Drafts == false);
+            ViewBag.drafts = context.Messages.Count(x => x.ReceiverMail == "admin@gmail.com" && x.Drafts == true && x.Trash == false);
+            ViewBag.trash = context.Messages.Count(x => x.ReceiverMail == "admin@gmail.com" && x.Trash == true && x.Drafts == false);
 
             return PartialView();
         }

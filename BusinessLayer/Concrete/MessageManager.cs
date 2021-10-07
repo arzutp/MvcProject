@@ -33,28 +33,28 @@ namespace BusinessLayer.Concrete
 
         public List<Message> GetListDrafts()
         {
-            return _messageDal.List(x => x.Drafts == true && x.Trash == false);
+            return _messageDal.List(x => x.SenderMail == "arzu@gmail.com" && x.Drafts == true && x.Trash == false);
 
         }
 
         public List<Message> GetListInbox()
         {
-            return _messageDal.List(x => x.ReceiverMail == "admin@gmail.com" && x.Trash == false && x.Drafts == false);
+            return _messageDal.List(x => x.ReceiverMail == "arzu@gmail.com" && x.Trash == false && x.Drafts == false);
             
         }
         public List<Message> GetListSendbox()
         {
-            return _messageDal.List(x => x.SenderMail == "admin@gmail.com" && x.Trash == false && x.Drafts == false);
+            return _messageDal.List(x => x.SenderMail == "arzu@gmail.com" && x.Trash == false && x.Drafts == false);
         }
 
         public List<Message> GetListTrash()
         {
-            return _messageDal.List(x => x.Trash == true && x.Drafts == false);
+            return _messageDal.List(x => x.ReceiverMail == "arzu@gmail.com" && x.Trash == true && x.Drafts == false);
         }
 
         public void Update(Message message)
         {
-            throw new NotImplementedException();
+            _messageDal.Update(message);
         }
     }
 }

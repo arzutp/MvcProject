@@ -32,7 +32,7 @@ namespace BusinessLayer.Concrete
             return _contentDal.Get(x => x.ContentId == id);
         }
 
-        public List<Content> GetList()  //
+        public List<Content> GetList()  
         {
             return _contentDal.List();
         }
@@ -40,6 +40,11 @@ namespace BusinessLayer.Concrete
         public List<Content> GetListByHeadingId(int id)
         {
             return _contentDal.List(x => x.HeadingId == id);
+        }
+
+        public List<Content> GetWriterList()
+        {
+            return _contentDal.List(x => x.WriterId == 1);
         }
 
         public void Update(Content content)

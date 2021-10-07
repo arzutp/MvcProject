@@ -26,6 +26,6 @@ namespace EntityLayer.Concrete
         public bool Trash { get; set; }
         public bool Drafts { get; set; }
 
-
+        public bool isRead { get; set; }
     }
 }

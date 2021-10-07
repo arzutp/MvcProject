@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Abstract;
+using BusinessLayer.Utilities;
 using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System;
@@ -36,6 +37,13 @@ namespace BusinessLayer.Concrete
         public List<Writer> GetList()
         {
             return _writerDal.List();
+        }
+
+        public Writer Login(Writer writer)
+        {
+            //string userN = Hashing.MD5Olustur(writer.WriterMail);
+            //string sifre = Hashing.MD5Olustur(writer.WriterPassword);
+            return _writerDal.Get(x => x.WriterMail == writer.WriterMail && x.WriterPassword == writer.WriterPassword);
         }
 
         public void Update(Writer writer)

@@ -40,7 +40,7 @@ namespace MvcProject.Controllers
         public ActionResult NewMessage(Message m, string button)
         {
             ValidationResult result = mv.Validate(m);
-            
+
             if (button == "draft")
             {
 
@@ -62,8 +62,9 @@ namespace MvcProject.Controllers
                 }
 
             }
-            
-            if (button == "save") {
+
+            if (button == "save")
+            {
                 result = mv.Validate(m);
                 if (result.IsValid)
                 {
@@ -81,8 +82,8 @@ namespace MvcProject.Controllers
                     }
                 }
             }
-            
-            
+
+
             return View();
         }
 
@@ -116,8 +117,25 @@ namespace MvcProject.Controllers
             var messageValues = mm.GetById(id);
             return View(messageValues);
         }
-        
 
+        public ActionResult MessageRead(int id)
+        {
+            var value = mm.GetById(id);
 
+            if (value.isRead == true)
+            {
+                value.isRead = false;
+                
+            }
+            else
+            {
+                value.isRead = true;
+                
+            }
+
+            mm.Update(value);
+            return RedirectToAction("Inbox");
+
+        }
     }
 }

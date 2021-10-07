@@ -16,6 +16,7 @@ namespace MvcProject.Controllers
         // GET: Login
 
         AdminManager am = new AdminManager(new EfAdminDal());
+        WriterManager wm = new WriterManager(new EFWriterDal());
 
         [HttpGet]
         public ActionResult Index()
@@ -48,5 +49,27 @@ namespace MvcProject.Controllers
             
         }
 
+        [HttpGet]
+        public ActionResult WriterLogin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult WriterLogin(Writer w)
+        {
+            var writerUser = wm.Login(w);
+            if(writerUser != null)
+            {
+                FormsAuthentication.SetAuthCookie(writerUser.WriterMail, false);
+                Session["WriterMail"] = writerUser.WriterMail;
+                return RedirectToAction("MyContent", "WriterContent");
+            }
+            else
+            {
+                ViewData["ErrorMessage"] = "Kullanıcı adı veya Parola yanlış";
+                return View();
+            }
+        }
     }
 }

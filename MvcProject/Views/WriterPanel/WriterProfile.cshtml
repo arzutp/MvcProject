@@ -1,4 +1,4 @@
-﻿
+﻿@model EntityLayer.Concrete.Writer
 @{
     ViewBag.Title = "WriterProfile";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
@@ -6,3 +6,41 @@
 
 <h2>WriterProfile</h2>
 
+@using (Html.BeginForm("WriterProfile", "WriterPanel", FormMethod.Post))
+{
+    <div class="form-group">
+
+        @Html.HiddenFor(x => x.WriterId, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Yazar Adı")
+        @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Yazar Soyadı")
+        @Html.TextBoxFor(x => x.WriterSurname, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Yazar Şifresi")
+        @Html.TextBoxFor(x => x.WriterPassword, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Yazar Maili")
+        @Html.TextBoxFor(x => x.WriterMail, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Yazar Başlığı ")
+        @Html.TextBoxFor(x => x.WriterTitle, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Hakkında")
+        @Html.TextBoxFor(x => x.WriterAbout, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Yazar Resmi")
+        @Html.TextBoxFor(x => x.WriterImage, new { @class = "form-control" })
+    </div>
+    <br />
+    <button class="btn btn-success">Kaydet</button>
+
+}

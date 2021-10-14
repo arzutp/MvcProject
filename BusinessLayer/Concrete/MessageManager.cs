@@ -31,25 +31,25 @@ namespace BusinessLayer.Concrete
             return _messageDal.Get(x => x.MessageId == id);
         }
 
-        public List<Message> GetListDrafts()
+        public List<Message> GetListDrafts(string p)
         {
-            return _messageDal.List(x => x.SenderMail == "arzu@gmail.com" && x.Drafts == true && x.Trash == false);
+            return _messageDal.List(x => x.SenderMail == p && x.Drafts == true && x.Trash == false);
 
         }
 
-        public List<Message> GetListInbox()
+        public List<Message> GetListInbox(string p)
         {
-            return _messageDal.List(x => x.ReceiverMail == "arzu@gmail.com" && x.Trash == false && x.Drafts == false);
+            return _messageDal.List(x => x.ReceiverMail == p && x.Trash == false && x.Drafts == false);
             
         }
-        public List<Message> GetListSendbox()
+        public List<Message> GetListSendbox(string p)
         {
-            return _messageDal.List(x => x.SenderMail == "arzu@gmail.com" && x.Trash == false && x.Drafts == false);
+            return _messageDal.List(x => x.SenderMail == p && x.Trash == false && x.Drafts == false);
         }
 
-        public List<Message> GetListTrash()
+        public List<Message> GetListTrash(string p)
         {
-            return _messageDal.List(x => x.ReceiverMail == "arzu@gmail.com" && x.Trash == true && x.Drafts == false);
+            return _messageDal.List(x => x.ReceiverMail == p && x.Trash == true && x.Drafts == false);
         }
 
         public void Update(Message message)

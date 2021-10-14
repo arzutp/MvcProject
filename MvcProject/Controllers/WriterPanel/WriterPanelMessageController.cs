@@ -20,7 +20,8 @@ namespace MvcProject.Controllers.WriterPanel
         // GET: WriterPanelMessage
         public ActionResult Inbox()
         {
-            var message = mm.GetListInbox();
+            string p = (string)Session["WriterMail"];
+            var message = mm.GetListInbox(p);
             return View(message);
         }
 
@@ -32,7 +33,8 @@ namespace MvcProject.Controllers.WriterPanel
 
         public ActionResult Sendbox()
         {
-            var message = mm.GetListSendbox();
+            string p = (string)Session["WriterMail"];
+            var message = mm.GetListSendbox(p);
             return View(message);
         }
 
@@ -44,7 +46,8 @@ namespace MvcProject.Controllers.WriterPanel
 
         public ActionResult Draft()
         {
-            var message = mm.GetListDrafts();
+            string p = (string)Session["WriterMail"];
+            var message = mm.GetListDrafts(p);
             return View(message);
         }
 
@@ -56,7 +59,8 @@ namespace MvcProject.Controllers.WriterPanel
 
         public ActionResult Trash()
         {
-            var message = mm.GetListDrafts();
+            string p = (string)Session["WriterMail"];
+            var message = mm.GetListDrafts(p);
             return View(message);
         }
 
@@ -70,7 +74,7 @@ namespace MvcProject.Controllers.WriterPanel
         public ActionResult NewMessage(Message m, string button)
         {
             ValidationResult result = mv.Validate(m);
-
+            string p = (string)Session["WriterMail"];
             if (button == "draft")
             {
 
@@ -79,7 +83,7 @@ namespace MvcProject.Controllers.WriterPanel
                 {
                     m.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
                     m.Drafts = true;
-                    m.SenderMail = "arzu@gmail.com";
+                    m.SenderMail = p;
                     mm.Add(m);
                     return RedirectToAction("Draft");
                 }
@@ -100,7 +104,7 @@ namespace MvcProject.Controllers.WriterPanel
                 {
                     m.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
                     m.Drafts = false;
-                    m.SenderMail = "arzu@gmail.com";
+                    m.SenderMail = p;
                     mm.Add(m);
                     return RedirectToAction("Sendbox");
                 }
@@ -118,12 +122,30 @@ namespace MvcProject.Controllers.WriterPanel
 
         }
 
+        public ActionResult MessageRead(int id)
+        {
+            var value = mm.GetById(id);
+
+            if (value.isRead == true)
+            {
+                value.isRead = false;
+
+            }
+            else
+            {
+                value.isRead = true;
+            }
+            mm.Update(value);
+            return RedirectToAction("Inbox");
+        }
+
         public PartialViewResult MessagePartial()
         {
-            ViewBag.inbox = c.Messages.Count(x => x.ReceiverMail == "arzu@gmail.com" && x.Drafts == false && x.Trash == false);
-            ViewBag.sendbox = c.Messages.Count(x=>x.SenderMail== "arzu@gmail.com" && x.Drafts == false && x.Trash == false);
-            ViewBag.trash = c.Messages.Count(x => x.ReceiverMail == "arzu@gmail.com" && x.Drafts == false && x.Trash == true);
-            ViewBag.draft = c.Messages.Count(x => x.SenderMail == "arzu@gmail.com" && x.Drafts == true && x.Trash == false);
+            string p = (string)Session["WriterMail"];
+            ViewBag.inbox = c.Messages.Count(x => x.ReceiverMail == p && x.Drafts == false && x.Trash == false);
+            ViewBag.sendbox = c.Messages.Count(x=>x.SenderMail== p && x.Drafts == false && x.Trash == false);
+            ViewBag.trash = c.Messages.Count(x => x.ReceiverMail == p && x.Drafts == false && x.Trash == true);
+            ViewBag.draft = c.Messages.Count(x => x.SenderMail == p && x.Drafts == true && x.Trash == false);
             return PartialView();
         }
     }

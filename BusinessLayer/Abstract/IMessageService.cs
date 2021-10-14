@@ -13,10 +13,10 @@ namespace BusinessLayer.Abstract
         void Update(Message message);
         void Delete(Message message);
         Message GetById(int id);
-        List<Message> GetListInbox();
-        List<Message> GetListSendbox();
-        List<Message> GetListDrafts();
-        List<Message> GetListTrash();
+        List<Message> GetListInbox(string p);
+        List<Message> GetListSendbox(string p);
+        List<Message> GetListDrafts(string p);
+        List<Message> GetListTrash(string p);
 
     }
 }

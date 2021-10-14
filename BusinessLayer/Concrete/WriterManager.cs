@@ -39,6 +39,12 @@ namespace BusinessLayer.Concrete
             return _writerDal.List();
         }
 
+        public int GetLogin(string p)
+        {
+            //p = (string)Session["WriterMail"];
+            return _writerDal.List(x => x.WriterMail == p).Select(y => y.WriterId).FirstOrDefault();     
+        }
+
         public Writer Login(Writer writer)
         {
             //string userN = Hashing.MD5Olustur(writer.WriterMail);
